@@ -38,7 +38,7 @@ let provider = new AlchemyProvider({
     rpcClient,
   })
 );
-console.log(polygonMumbai)
+// console.log(polygonMumbai)
 // [OPTIONAL] Use Alchemy Gas Manager
 provider = provider.withAlchemyGasManager({
   provider: provider.rpcClient,
@@ -49,8 +49,8 @@ provider = provider.withAlchemyGasManager({
 
 async function send(){
   const { hash } = await provider.sendUserOperation({
-    target:  "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889", //matic  "0xcf3C09Ae6124Ddc24e1970314308ee6869Ab39f2", // Uniswap V2 Router       // 
-    data: "0xa9059cbb000000000000000000000000b3e1275be2649e8cf8e4643da197d6f7b309626a00000000000000000000000000000000000000000000000000000002540be400", 
+    target:  "0xef9ccA0D749A362AAaEbaaC1e7434D861153F51d", // Usdt mumbai
+    data: "0xa9059cbb000000000000000000000000f53eefd2f5e0b8235d8b0b9fae4efa74c98786f000000000000000000000000000000000000000000000000000000000000186a0", 
     value: 0, // value: bigint or undefined
     paymasterMiddleware: "0xC03Aac639Bb21233e0139381970328dB8bcEeB67",
    

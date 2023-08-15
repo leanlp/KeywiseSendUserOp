@@ -23,24 +23,3 @@ console.log(encodedABI);
 //AA=0xcf3C09Ae6124Ddc24e1970314308ee6869Ab39f2
 // MM=0x6f6eb030334642D3D1527B3D1b05fb08C16852d5
 
-
-
-
-// function encodePacked(params = []){
-
-//     let types = []
-//     let values = []
-
-//     params.forEach(itemArray => {
-//         types.push(itemArray[0])
-//         values.push(itemArray[1])
-//     })
-
-//     return ethers.solidityPacked(types, values)
-//   }
-
-
-// console.log(encodePacked([
-// ["address", "0x2924a6C59115299A5945cA1dF6D73ABA526C97bd"],
-// ["uint256", 15]
-// ]))
