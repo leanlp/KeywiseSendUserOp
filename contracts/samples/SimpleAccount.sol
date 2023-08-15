@@ -25,7 +25,17 @@ contract SimpleAccount is BaseAccount, TokenCallbackHandler, UUPSUpgradeable, In
     address public ownerAddress2 = 0xB3E1275Be2649E8cf8e4643da197d6F7B309626A;
     address public ownerAddress3 = 0x6f6eb030334642D3D1527B3D1b05fb08C16852d5;
 
-   
+   struct PendingChange {
+        uint ownerNumber;
+        address newOwner;
+        uint timestamp;
+    }
+ mapping(address => PendingChange) public pendingChanges;
+
+
+
+    event ProposalCreated(address indexed proposer, uint ownerNumber, address newOwner, uint timestamp);
+    event OwnerChanged(address indexed changer, uint ownerNumber, address newOwner);
 
     IEntryPoint private immutable _entryPoint;
 
@@ -54,17 +64,31 @@ contract SimpleAccount is BaseAccount, TokenCallbackHandler, UUPSUpgradeable, In
     require(msg.sender == owner || msg.sender == address(this) || msg.sender == ownerAddress2 || msg.sender == ownerAddress3, "only owner");
 }
 
-function setOwnerAddress(uint ownerNumber, address newOwner) public onlyOwner(){
+function proposeOwnerAddressChange(uint ownerNumber, address newOwner) public onlyOwner() {
         require(ownerNumber >= 1 && ownerNumber <= 3, "Invalid owner number. Enter a value from 1 to 3.");
-        if (ownerNumber == 1) {
-            owner = newOwner;
-        } else if (ownerNumber == 2) {
-            ownerAddress2 = newOwner;
-        } else if (ownerNumber == 3) {
-            ownerAddress3 = newOwner;
-        }
 
-    
+        // Store the proposed change
+        pendingChanges[msg.sender] = PendingChange(ownerNumber, newOwner, block.timestamp + 10000);
+        // Emit an event
+        emit ProposalCreated(msg.sender, ownerNumber, newOwner, block.timestamp + 10000);
+    }
+
+    function executeOwnerAddressChange() public onlyOwner() {
+        PendingChange memory change = pendingChanges[msg.sender];
+        require(change.timestamp != 0, "No pending change");
+        require(block.timestamp >= change.timestamp, "You must wait to change the owner address");
+
+        if (change.ownerNumber == 1) {
+            owner = change.newOwner;
+        } else if (change.ownerNumber == 2) {
+            ownerAddress2 = change.newOwner;
+        } else if (change.ownerNumber == 3) {
+            ownerAddress3 = change.newOwner;
+        }
+        
+        emit OwnerChanged(msg.sender, change.ownerNumber, change.newOwner);
+        // Clear the pending change
+        delete pendingChanges[msg.sender];
     }
 
     /**
