@@ -6,7 +6,7 @@ const {API_KEY_ALCHEMY, PRIVATE_KEY } =
   process.env;
 
 const provider = new ethers.AlchemyProvider(80001, API_KEY_ALCHEMY);
-const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ??"");
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY2 ??"");
 const signer = wallet.connect(provider);
 
 

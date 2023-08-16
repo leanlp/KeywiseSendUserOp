@@ -7,7 +7,7 @@ const iface = new ethers.Interface(abi);
 
 
 const arg1 = "0xf53eefD2f5E0B8235D8B0b9FAE4eFA74c98786f0";  // staking contract
-const arg2 = "100000"; // second argument
+const arg2 = "100000000000"; // second argument
 
 const encodedABIApprove = iface.encodeFunctionData("approve", [arg1, arg2]);
 
