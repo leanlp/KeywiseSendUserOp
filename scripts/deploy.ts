@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 require("dotenv").config();
 
 // const data = require("./arguments.js");
-const {API_KEY_ALCHEMY } =
+const {API_KEY_ALCHEMY, PRIVATE_KEY } =
   process.env;
 
 const provider = new ethers.AlchemyProvider(80001, API_KEY_ALCHEMY);

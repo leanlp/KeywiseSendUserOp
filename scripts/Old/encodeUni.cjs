@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const ethers = require("ethers");
-const abi = require('./ABIERC20.json');
+const abi = require('../ABIERC20.json');
 const abiUniV2 = require('./ABIUniSwapRouterV2.json');
 
 
