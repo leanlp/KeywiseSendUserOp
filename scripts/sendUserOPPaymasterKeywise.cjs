@@ -21,10 +21,11 @@ const {API_KEY_ALCHEMY, PRIVATE_KEY, API_URL_ALCHEMY } =
 
   const owner = LocalAccountSigner.privateKeyToAccountSigner
   (
-    process.env.PRIVATE_KEY
+   
+    process.env.PRIVATE_KEY2
     );
 
-    async function send(walletAddress) {  
+  async function send(walletAddress) {  
 let provider = new AlchemyProvider({
   apiKey: API_KEY_ALCHEMY,
   chain,
@@ -39,8 +40,7 @@ let provider = new AlchemyProvider({
     rpcClient,
   })
 );
-// console.log(polygonMumbai)
-// [OPTIONAL] Use Alchemy Gas Manager
+
 provider = provider.withAlchemyGasManager({
   provider: provider.rpcClient,
   policyId: PAYMASTER_POLICY_ID,
