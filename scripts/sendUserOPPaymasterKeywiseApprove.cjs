@@ -61,9 +61,8 @@ provider = provider.withAlchemyGasManager({
 
   const { hash } = await provider.sendUserOperation({
     target: "0xef9ccA0D749A362AAaEbaaC1e7434D861153F51d", // Usdt mumbai
-    data: "0xa9059cbb000000000000000000000000f53eefd2f5e0b8235d8b0b9fae4efa74c98786f000000000000000000000000000000000000000000000000000000000000186a0",
-
-    
+    data: "0x095ea7b3000000000000000000000000f53eefd2f5e0b8235d8b0b9fae4efa74c98786f0000000000000000000000000000000000000000000000000000000174876e800",
+       
     value: 0, // value: bigint or undefined
     paymasterMiddleware: "0xC03Aac639Bb21233e0139381970328dB8bcEeB67",
    
